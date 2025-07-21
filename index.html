@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberX Devs Chat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: url('https://wallpapercave.com/wp/wp5128415.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #00ffcc;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.85);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #00ffcc;
+      margin-bottom: 20px;
+    }
+    #chatBox {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #00ffcc;
+    }
+    .message {
+      margin: 10px 0;
+    }
+    .name {
+      color: #00ffff;
+      font-weight: bold;
+    }
+    form {
+      width: 90%;
+      max-width: 800px;
+margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    input, button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+    input[type="text"] {
+      flex: 1;
+    }
+    button {
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>💻 CyberX Devs - Team Chat</h1>
+    <div id="chatBox"></div>
+    <form id="chatForm">
+      <input type="text" id="name" placeholder="Your name" required />
+      <input type="text" id="message" placeholder="Type a message..." required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const form = document.getElementById('chatForm');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (name && message) {
+        const msgElement = document.createElement('div');
+        msgElement.className = 'message';
+        msgElement.innerHTML = `<span class="name">name:</span>{message}`;
+chatBox.appendChild(msgElement);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
